@@ -280,10 +280,11 @@ const Cart = ({ navigation }) => {
             </View>
           ) : (
             <View style={styles.emptyCartView}>
-              <Text style={[styles.emptyCartViewText, {color: `${THEME.text}`}]}>Your cart is empty.</Text>
-            </View>
-          )}
-
+            <Text style={[styles.emptyCartViewText, {color: `${THEME.text}`}]}>Your cart is empty.</Text>
+          </View>
+        )}
+       
+           
           <View style={{ height: 100 }}></View>
         </View>
       </View>

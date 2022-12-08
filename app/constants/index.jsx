@@ -4,7 +4,8 @@ import {
   CAROUSELData,
   BEVERAGESData,
   DESSERTSData,
-  SLIDER
+  SLIDER,
+  FAQS
 } from 'constants/dummy'
 
-export { FOODSData, CATEGORYData, CAROUSELData, BEVERAGESData, DESSERTSData , SLIDER}
+export { FOODSData, CATEGORYData, CAROUSELData, BEVERAGESData, DESSERTSData , SLIDER, FAQS }

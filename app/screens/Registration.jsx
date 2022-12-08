@@ -35,7 +35,6 @@ const Login = () => {
     email: '',
     password: '',
     phone: '',
-    email: '',
     address: '',
   })
 

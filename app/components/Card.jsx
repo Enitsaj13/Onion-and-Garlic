@@ -1,9 +1,10 @@
 /* <-- dependencies --> */
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import AddIcon from 'react-native-vector-icons/Ionicons'
 import FastImage from 'react-native-fast-image'
+import { CartContext } from "hooks/CartContext";
 
 /* <-- theme --> */
 import ThemeContext from 'theme/ThemeContext'

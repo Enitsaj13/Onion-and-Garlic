@@ -17,7 +17,13 @@ import Otp from 'components/Otp'
 import Payment from 'screens/Payment'
 import ForgotPassword from 'screens/ForgotPassword'
 import ResetPassword from 'screens/ResetPassword'
+import EditProfile from 'screens/EditProfile'
 import EmailVerification from 'components/EmailVerification'
+import { ProductsList } from "screens/ProductsList.jsx"
+import { ProductDetails } from "screens/ProductDetails.jsx"
+import { Cart } from "screens/Cart.jsx"
+import { CartProvider } from "CartContext.jsx"
+import { CartIcon } from "components/CartIcon.jsx"
 
 const Screen = [
   {
@@ -96,7 +102,11 @@ const Screen = [
       name: 'ResetPassword',
       component: ResetPassword,
   },
-  
+  {
+      name: 'EditProfile',
+      component: EditProfile,
+  },
+
 
 ]
 

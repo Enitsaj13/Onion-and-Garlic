@@ -10,7 +10,6 @@ import Animated, {
 } from 'react-native-reanimated'
 import FastImage from 'react-native-fast-image'
 
-
 /* <-- constant--> */
 import { COLORS } from 'theme'
 

@@ -17,6 +17,22 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     top: 30,
   },
+  accHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+
+  dots: {
+    top: 0,
+  },
+
+  dotsContainer: {
+    borderRadius: 10,
+    padding: 2,
+    top: 8,
+  },
+
   accountImg: {
     width: 60,
     height: 60,

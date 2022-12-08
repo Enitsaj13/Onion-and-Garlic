@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
         fontSize: SIZES.font,
         paddingLeft: 42,
         letterSpacing: 0.8,
+        // borderWidth: 2,
+        // borderColor: COLORS.secondary,
 
     },
     passIcon: {

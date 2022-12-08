@@ -46,7 +46,6 @@ const Login = () => {
     }, 1500);
   }; 
 
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: `${THEME.background}` }}>
       <View style={styles.headerContainer}>
@@ -79,7 +78,7 @@ const Login = () => {
         enabled
       >
         
-        
+      <View>
         <TextInput
           value={password}
           onChangeText={text => setPassword(text)}
@@ -96,8 +95,7 @@ const Login = () => {
           onPress={() => setShowPassword(!showPassword)}>
           <Icon name={showPassword ? 'eye-off-outline' : 'eye-outline'} size={20} color={`${THEME.text}`} />
         </TouchableOpacity>
-
-      
+      </View>
         
       </KeyboardAvoidingView>
     
@@ -118,7 +116,7 @@ const Login = () => {
           onPress={
             () => {
               startLoading()
-              signIn( navigation, email, password)
+              signIn(navigation, email, password)
           }
         }
           title={loading ? '' : 'Login'}

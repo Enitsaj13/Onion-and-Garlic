@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Alert } from 'react-native'
 import auth from '@react-native-firebase/auth'
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin'
@@ -9,28 +8,15 @@ import firestore from '@react-native-firebase/firestore'
     GoogleSignin.configure({
       webClientId: '8823493165-j5rvg757i3g2qv9cu5mgpeaqu4eaop8h.apps.googleusercontent.com',
     });
-   
 
   /* <-- login functions --> */
   const signIn = async ( navigation, email, password ) => {
+
+    if (email === '' || password === '') {
+      Alert.alert('Login Failed', 'Please enter your email and password')
+      return
+    }
   
-    // const users = await firestore().collection('users').get()
-    // const usersData = users.docs.map(doc => doc.data())
-
-    // /* <-- check if the user exists in the database --> */
-    // const userDb = usersData.find(user => user.email === email && user.password === password)
-
-    // setTimeout(() => {
-    //   if (userDb) { 
-    //     console.log(`Welcome ${userDb.name}`)
-    //     navigation.replace('Otp', { userDb })
-
-    //   } else {
-    //     Alert.alert('Login Failed', 'Please check your email and password')
-    //   }
-
-    // }, 1500)
-
     try {
       await auth().signInWithEmailAndPassword(email, password)
       setTimeout(() => {
@@ -127,7 +113,7 @@ import firestore from '@react-native-firebase/firestore'
     }
 
 
-  /* <-- add user to firestore db --> */
+    /* <-- add user to firestore db --> */
   const addUser = async ( navigation, dataState ) => {
 
         /* <-- user --> */
@@ -138,6 +124,7 @@ import firestore from '@react-native-firebase/firestore'
       const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
 
       const phoneRegex = /^^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
+
 
       if (!dataState.name || !dataState.email || !dataState.password || !dataState.phone || !dataState.address) {
         Alert.alert('Error', 'Please fill all fields')
@@ -150,16 +137,16 @@ import firestore from '@react-native-firebase/firestore'
       } else if (!emailRegex.test(dataState.email)) {
         Alert.alert('Error', 'Please enter a valid email')
         return
-
         
       } else if (!phoneRegex.test(dataState.phone)) {
         Alert.alert('Error', 'Please enter a valid phone number')
         return
+
       } else {
-    
+
         try {
           await userAuthentic.createUserWithEmailAndPassword(dataState.email, dataState.password)
-          await firestore().collection('users').add({
+          await firestore().collection('users').doc(userAuthentic.currentUser.uid).set({
             name: dataState.name,
             email: dataState.email,
             password: dataState.password,
@@ -175,11 +162,14 @@ import firestore from '@react-native-firebase/firestore'
           } else if (error.code === 'auth/invalid-email') {
             Alert.alert('Error', 'That email address is invalid!')
           } else if (error.code === 'auth/weak-password') {
-            Alert.alert('Error', 'Password must be at least 6 characters') 
+            Alert.alert('Error', 'Password should be at least 6 characters')
+          } else {
+            Alert.alert('Error', 'Something went wrong!')
           }
         }
       }
-    }
+  }
+
 
     /* <-- logout handler --> */
   const logOut = async navigation => {
@@ -212,21 +202,56 @@ import firestore from '@react-native-firebase/firestore'
       )
     }
 
-  /* <-- get the data of logged in user in the firestore --> */
-  
-  // const getUser = async (navigation, user) => {
-  //   const userRef = firestore().collection('users')
-  //   const snapshot = await userRef.where('email', '==', user.email).get()
-  //   if (snapshot.empty) {
-  //     console.log('No matching documents.')
-  //     return
-  //   }
-  //   snapshot.forEach(doc => {
-  //     console.log(doc.id, '=>', doc.data())
-  //     navigation.replace('BottomNavigator')
-  //   })
-  // }
-  
+    /* <-- read --> */
+    const getFoodData = async (category, setFoodData) => {
+      try {
+        const foodData = await firestore()
+        .collection('food')
+        .where('category', '==', category)
+        .get()
+
+      const tempDb = [];
+      foodData.forEach(doc => {
+        tempDb.push({ 
+          id: doc.id,
+          ...doc.data()
+        })
+      })
+      setFoodData(tempDb)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const getUser = async (setUser) => {
+      try {
+        const list = [];
+
+        await firestore()
+        .collection('users')
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach(doc => {
+            const { name, email, phone, address } = doc.data();
+            list.push({
+              id: doc.id,
+              name,
+              email,
+              phone,
+              address
+            })
+          })
+        })
+        setUser(list)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+
+      
+
+
   
 export { 
   signIn, 
@@ -234,6 +259,8 @@ export {
   facebookSignIn, 
   addUser, 
   logOut, 
+  getFoodData,
+  getUser
 }
 
 

@@ -19,7 +19,6 @@ const Otp = ({ navigation }) => {
 
     /* <-- theme state --> */
   const THEME = useContext(ThemeContext)
-  
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: THEME.background }}>

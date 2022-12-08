@@ -1,6 +1,7 @@
 /* <-- dependencies --> */
 import { useContext } from 'react'
 import { View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Entypo'
 
 /* <-- theme --> */
@@ -12,24 +13,22 @@ export const BackButton = ({ navigation }) => {
 
   return (
     <>
-      <View
+      <TouchableOpacity onPress={navigation.goBack}
         style={{
-          padding: 1,
           borderRadius: 10,
           borderWidth: 1,
           padding: 8,
-          marginRight: 4,
           borderColor: THEME.card,
           backgroundColor: THEME.card,
+          marginRight: 4,
         }}
       >
         <Icon
           name='chevron-thin-left'
           size={20}
-          onPress={navigation.goBack}
           color={`${THEME.text}`}
         />
-      </View>
+      </TouchableOpacity>
     </>
   )
 }

@@ -4,8 +4,10 @@ import { View, TextInput, TouchableOpacity, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import IconBadge from 'react-native-icon-badge';
 
-/* <-- theme --> */
+/* <-- theme and cart context --> */
 import ThemeContext from 'theme/ThemeContext'
+import { CartContext } from "hooks/CartContext";
+
 
 /* <-- styles --> */
 import styles from 'styles/home'
@@ -13,6 +15,9 @@ import styles from 'styles/home'
 const Header = ({ onSearch, navigation }) => {
   /* <-- theme state --> */
   const THEME = useContext(ThemeContext)
+
+  /* <-- items context --> */
+  const { getItemsCount } = useContext(CartContext);
 
   return (
     <>
@@ -51,7 +56,7 @@ const Header = ({ onSearch, navigation }) => {
           }
           BadgeElement={
             <Text style={{color:'#FFFFFF'}}>{
-              0
+              getItemsCount()
             }</Text>
           }
           IconBadgeStyle={

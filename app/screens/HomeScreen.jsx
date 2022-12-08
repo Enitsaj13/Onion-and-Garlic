@@ -30,24 +30,23 @@ const HomeScreen = ({ navigation, item }) => {
   /* <-- theme state --> */
   const THEME = useContext(ThemeContext)
 
-  /* <-- user --> */
-  // const [user, setUser] = useState([])
+ /* <-- user data --> */
+ const uid = auth().currentUser?.uid;
+  
+ const [user, setUser] = useState(null)
 
-  // /* <-- get user --> */
-  // useEffect(() => {
-  //   firestore()
-  //     .collection('user')
-  //     .doc(auth().currentUser.uid)
-  //     .get()
-  //     .then((documentSnapshot) => {
-  //       if (documentSnapshot.exists) {
-  //         setUser(documentSnapshot.data())
-  //       }
-  //     })
-  // }, [])
 
- 
-  //jastine9835@gmail.com
+ useEffect(() => {
+   const subscriber = firestore()
+     .collection('users')
+     .doc(uid)
+     .onSnapshot(documentSnapshot => {
+       setUser(documentSnapshot.data());
+     });
+
+   // Stop listening for updates when no longer required
+   return () => subscriber();
+ }, []);
 
   return (
     <SafeAreaView
@@ -59,19 +58,16 @@ const HomeScreen = ({ navigation, item }) => {
             <Text style={[styles.greet, { color: THEME.text }]}>Hello,</Text>
           
              <Text style={[styles.user, { color: THEME.text }]}>
-              {/* display the name from login props */}
-              {/* {user.name}      */}
-
-              {/* {userRoute.name} */}
-
-              OnionGarlic
+              
+              {/* <-- display user name --> */}
+              {user?.name}
                             
             </Text>
              
           </View>
           <Text style={styles.asking}>What would you like to order ?</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+        <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
           <Image
             source={require('assets/images/user/profile.jpeg')}
             style={styles.profile}

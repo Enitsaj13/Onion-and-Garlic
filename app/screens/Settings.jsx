@@ -1,5 +1,5 @@
 /* <-- dependencies --> */
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import {
   Text,
   View,
@@ -18,6 +18,9 @@ import { useNavigation } from '@react-navigation/native'
 /* <-- logout authentication --> */
 import { logOut } from 'backend/firebase-config'
 import auth from '@react-native-firebase/auth'
+
+/* <-- backend function --> */
+import firestore from '@react-native-firebase/firestore'
 
 /* <-- theme --> */
 import ThemeContext from 'theme/ThemeContext'
@@ -46,29 +49,57 @@ const Settings = () => {
     EventRegister.emit('themeChanged', value)
   }
 
+
+  /* <-- user data --> */
+  const uid = auth().currentUser?.uid;
+  
+  const [user, setUser] = useState(null)
+
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('users')
+      .doc(uid)
+      .onSnapshot(documentSnapshot => {
+        setUser(documentSnapshot.data());
+      });
+
+    // Stop listening for updates when no longer required
+    return () => subscriber();
+  }, []);
+
+
   return (
     
     <SafeAreaView style={{ flex: 1, backgroundColor: THEME.background }}>
-      <View style={{ paddingHorizontal: 20 }}>
-        <Text style={[styles.accountText, { color: `${THEME.text}` }]}>
-          Account
-        </Text>
+      <View style={{ paddingHorizontal: 20, }}>
+        <View style={styles.accHeader}>
+          <Text style={[styles.accountText, { color: `${THEME.text}` }]}>
+            Account
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('EditProfile')} style={styles.dotsContainer}>
+            <Icon name='dots-vertical' size={30} color={`${THEME.text}`} style={styles.dots}/>
+          </TouchableOpacity>
+        </View>
         <View style={styles.accountContainer}>
-          <Image
-            style={styles.accountImg}
-            source={require('assets/images/user/profile.jpeg')}
-          />
+
+          <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
+            <Image
+              style={styles.accountImg}
+              source={require('assets/images/user/profile.jpeg')}
+            />
+          </TouchableOpacity>
 
           <View style={styles.accountTextContainer}>
             <Text style={[styles.accountName, { color: `${THEME.text}` }]}>
                 {/* display the name of logged in user */}
-                {displayName}
+                {user?.name}
               
             </Text>
 
             <Text style={[styles.accountSubName, { color: `${THEME.text}` }]}>
                    {/* display the email of logged in user */}
-                {email}
+                {user?.email}
             </Text>
           </View>
 
@@ -151,7 +182,7 @@ const Settings = () => {
           </View>
         </View>
 
-        <View style={styles.helpContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('Faq')} style={styles.helpContainer}>
           <View
             style={{ backgroundColor: COLORS.greenLight, borderRadius: 40, padding: 14 }}>
             <Ionicons name='help-buoy' size={24} color={COLORS.green} />
@@ -159,14 +190,14 @@ const Settings = () => {
 
           <View style={{ flexDirection: 'row' }}>
             <Text style={[styles.textSettings, { color: `${THEME.text}` }]}>
-              Help
+              Help Center
             </Text>
 
-            <TouchableOpacity style={styles.arrow}>
+            <View style={styles.arrow}>
               <Arrow name='chevron-right' size={30} color={`${THEME.text}`} />
-            </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </TouchableOpacity>
 
           
         <TouchableOpacity style={styles.logoutContainer} 

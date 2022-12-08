@@ -11,6 +11,8 @@ import HomeScreen from 'screens/HomeScreen'
 import MenuScreen from 'screens/MenuScreen'
 import FavoriteScreen from 'screens/FavoriteScreen'
 import Settings from 'screens/Settings'
+import ProductsList from 'screens/FoodsLists'
+import ProductDetails from 'screens/ProductDetails'
 
 /* <-- theme --> */
 import ThemeContext from 'theme/ThemeContext'
@@ -50,7 +52,6 @@ const Screen = [
     name: 'Settings',
     component: Settings,
     options: {
-      // tabBarBadge: 3,
       tabBarIcon: ({ color }) => (
         <UserIcon name='user' size={28} color={color} />
       ),

@@ -22,7 +22,7 @@ const DetailsScreen = ({ navigation, route }) => {
   const THEME = useContext(ThemeContext)
 
   return (
-    <SafeAreaView style={{ backgroundColor: `${THEME.background}` }}>
+    <SafeAreaView style={{ height: '100%', backgroundColor: `${THEME.background}` }}>
       <View style={[styles.header, { backgroundColor: THEME.background }]}>
         {/* <-- invoking the back button component -->  */}
         <BackButton navigation={navigation} />
@@ -65,15 +65,7 @@ const DetailsScreen = ({ navigation, route }) => {
         </View>
 
         <View style={[styles.details, { backgroundColor: THEME.background }]}>
-          <Text style={[styles.itemIngredients, { color: THEME.text }]}>
-            Ingredients:
-          </Text>
-
-          <Text style={[styles.detailsText, { color: THEME.text }]}>
-            {item.ingredients}
-          </Text>
-
-    
+          
           <View style={{ marginTop: 20, marginBottom: 20 }}>
             <SecondaryButton
               title='Add to cart'

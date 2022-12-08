@@ -26,9 +26,6 @@ const LandingScreen = ({ navigation, item }) => {
     navigation.navigate('Login')
   }
 
-  /* <-- slider state --> */
-  const [showRealApp, setShowRealApp] = useState(false)
-
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: THEME.background }}>
