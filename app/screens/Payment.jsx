@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Alert,
+  ScrollView
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -43,6 +44,10 @@ const Cart = ({ navigation }) => {
       id: 2,
       label: 'Credit Card'
     },
+    {
+      id: 3,
+      label: 'Paypal'
+    },
   ];
 
  
@@ -74,7 +79,7 @@ const Cart = ({ navigation }) => {
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: `${THEME.background}`}]}>
-        <View style={[styles.cartContainer, {backgroundColor: `${THEME.background}`}]}>
+        <ScrollView style={[styles.cartContainer, {backgroundColor: `${THEME.background}`}]}>
         <View>
           <View style={styles.cartTitleView}>
             <View style={styles.btnContainer}>
@@ -287,7 +292,7 @@ const Cart = ({ navigation }) => {
            
           <View style={{ height: 100 }}></View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

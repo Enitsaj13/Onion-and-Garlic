@@ -1,6 +1,5 @@
 /* <-- dependencies --> */
 import { useContext } from 'react'
-import { View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Entypo'
 

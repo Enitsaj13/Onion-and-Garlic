@@ -64,7 +64,7 @@ const Settings = () => {
         setUser(documentSnapshot.data());
       });
 
-    // Stop listening for updates when no longer required
+     /* stop listening for updates when no longer required */
     return () => subscriber();
   }, []);
 
@@ -92,14 +92,13 @@ const Settings = () => {
 
           <View style={styles.accountTextContainer}>
             <Text style={[styles.accountName, { color: `${THEME.text}` }]}>
-                {/* display the name of logged in user */}
-                {user?.name}
-              
+                {/* <-- display name of logged in user --> */}
+              {displayName ? displayName : user?.name} 
             </Text>
 
             <Text style={[styles.accountSubName, { color: `${THEME.text}` }]}>
-                   {/* display the email of logged in user */}
-                {user?.email}
+                {/* display the email of logged in user */}
+              {email ? email : user?.email}
             </Text>
           </View>
 

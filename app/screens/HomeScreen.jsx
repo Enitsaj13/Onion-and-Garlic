@@ -32,6 +32,8 @@ const HomeScreen = ({ navigation, item }) => {
 
  /* <-- user data --> */
  const uid = auth().currentUser?.uid;
+ 
+ const displayName = auth().currentUser?.displayName;
   
  const [user, setUser] = useState(null)
 
@@ -59,8 +61,8 @@ const HomeScreen = ({ navigation, item }) => {
           
              <Text style={[styles.user, { color: THEME.text }]}>
               
-              {/* <-- display user name --> */}
-              {user?.name}
+              {/* <-- display first name using split method --> */}
+              {displayName ? displayName.split(' ')[0] : user?.name.split(' ')[0]} 👋
                             
             </Text>
              

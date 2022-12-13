@@ -1,6 +1,7 @@
 /* <-- dependencies --> */
 import { useContext } from 'react'
 import { SafeAreaView, View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -21,7 +22,7 @@ const Feedback = ({ navigation }) => {
 
 
   const Feedback = () => {
-    Alert.alert('Thank you for your feedback!')
+    Alert.alert('Thank you for your feedback and rating!')
     navigation.navigate('BottomNavigator')
     }
 
@@ -68,7 +69,22 @@ const Feedback = ({ navigation }) => {
             Please give us your feedback!
         </Text>
      </View>
-
+     
+     {/* Ratings */}
+        <View style={{  
+            marginTop: 40,
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}>
+            <AirbnbRating
+            reviewColor='#FFC700'
+            selectedColor={COLORS.yellow}
+            count={5}
+            reviews={["Terrible", "Bad", "Okay", "Good", "Great"]}
+            defaultRating={5}
+            size={30}
+            />
+        </View>
      
 
      {/* <Image source={require('assets/images/user/celebration.webp')} style={{

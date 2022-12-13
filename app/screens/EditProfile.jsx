@@ -49,7 +49,6 @@ const Login = () => {
 
 
 
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: `${THEME.background}` }}>
       <View style={{

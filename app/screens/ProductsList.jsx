@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {View, Text, FlatList, StyleSheet} from "react-native";
 import { getProducts } from "services/ProductsService";
-import {Product} from "components/Product";
+import { Product } from "components/Product";
 
 const ProductsList = ({ navigation }) => {
 
@@ -29,6 +29,7 @@ const ProductsList = ({ navigation }) => {
             keyExtractor={(item) => item.id.toString()}
             data={products}
             renderItem={renderProduct}
+            numColumns={2}
         />
     )
 

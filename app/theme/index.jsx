@@ -15,8 +15,6 @@ export const THEME = {
     darkIcon: '#FEB65D',
     switch: '#FEB65D',
     switchTrack: '#F8F8F8',
-    // activeNavigator: '#29b6f6',
-    // activeNavigator: '#1f2937',
     activeNavigator: '#0ea5e9',
     placeholder: '#64748b',
   },

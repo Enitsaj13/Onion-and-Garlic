@@ -3,7 +3,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "*": ["app/*"]
+      "*": [
+        "app/*"
+      ]
     }
   }
 }

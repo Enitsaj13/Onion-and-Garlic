@@ -30,7 +30,7 @@ const Accordion = ({ navigation }) => {
                   data={FAQS}
                   customTitle={item => <Text style={[styles.title, {color: `${THEME.text}`}]}>{item.title}</Text>}
                   customBody={item => <Text style={[styles.body, {color: `${THEME.text}`}]}>{item.body}</Text>}
-                  animationDuration={300}  
+                  animationDuration={400}  
                   keyExtractor={item => item.id}
                   containerItemStyle={[styles.containerItemStyle, 
                   {borderBottomColor: `${THEME.placeholder}`}]}

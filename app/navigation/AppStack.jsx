@@ -7,7 +7,6 @@ import LandingScreen from 'screens/LandingScreen'
 import BottomNavigator from 'navigation/BottomNavigator'
 import DetailsScreen from 'screens/DetailScreen'
 import HomeScreen from 'screens/HomeScreen'
-import CookingScreen from 'screens/CookingScreen'
 import FavoriteScreen from 'screens/FavoriteScreen'
 import MenuScreen from 'screens/MenuScreen'
 import Login from 'screens/Login'
@@ -22,16 +21,14 @@ import ForgotPassword from 'screens/ForgotPassword'
 import ResetPassword from 'screens/ResetPassword'
 import EditProfile from 'screens/EditProfile'
 import EmailVerification from 'components/EmailVerification'
-import { ProductsList } from "screens/ProductsList.jsx"
-import { ProductDetails } from "screens/ProductDetails.jsx"
-import { Cart } from "screens/Cart.jsx"
-import { CartIcon } from "components/CartIcon.jsx"
+import ProductsList from "screens/ProductsList"
+import ProductDetails from "screens/ProductDetails"
+import Cart from "screens/Cart"
+import Faq from "screens/Faq"
 
 /* <-- navigator --> */
 const Stack = createStackNavigator()
 
-/* <-- stack screens details --> */
-import Stacks from 'navigation/Stacks'
 
 const AppStack = () => {
     return (
@@ -39,29 +36,73 @@ const AppStack = () => {
             screenOptions={{
                 headerShown: false,
             }}>
-            <Stack.Screen name="Landing" component={Landing} />
-            <Stack.Screen name="LandingScreen" component={LandingScreen} />
-            <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-            <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="CookingScreen" component={CookingScreen} />
-            <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
-            <Stack.Screen name="MenuScreen" component={MenuScreen} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Registration" component={Registration} />
-            <Stack.Screen name="Checkout" component={Checkout} />
-            <Stack.Screen name="Feedback" component={Feedback} />
-            <Stack.Screen name="Settings" component={Settings} />
-            <Stack.Screen name="MyCart" component={MyCart} />
-            <Stack.Screen name="Otp" component={Otp} />
-            <Stack.Screen name="Payment" component={Payment} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-            <Stack.Screen name="ResetPassword" component={ResetPassword} />
-            <Stack.Screen name="EditProfile" component={EditProfile} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="Landing" component={Landing} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="LandingScreen" component={LandingScreen} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="BottomNavigator" component={BottomNavigator} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="DetailsScreen" component={DetailsScreen} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="HomeScreen" component={HomeScreen} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="FavoriteScreen" component={FavoriteScreen} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="MenuScreen" component={MenuScreen} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="Login" component={Login} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="Registration" component={Registration} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="Checkout" component={Checkout} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="Feedback" component={Feedback} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="Settings" component={Settings} />
+            <Stack.Screen name="MyCart" options={{
+                ...TransitionPresets.ModalTransition
+            }} component={MyCart} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="Otp" component={Otp} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="Payment" component={Payment} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="ForgotPassword" component={ForgotPassword} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="ResetPassword" component={ResetPassword} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="EditProfile" component={EditProfile} />
             <Stack.Screen name="EmailVerification" component={EmailVerification} />
-            <Stack.Screen name="Products" component={ProductsList} options={({navigation}) => ({title: 'Products', headerRight: () => <CartIcon navigation={navigation} />})} />
-            <Stack.Screen name="ProductDetails" component={ProductDetails} options={({navigation}) => ({title: 'Products', headerRight: () => <CartIcon navigation={navigation} />})} />
-            <Stack.Screen name="Cart" component={Cart} options={({navigation}) => ({title: 'Products', headerRight: () => <CartIcon navigation={navigation} />})} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="ProductsList" component={ProductsList} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalFadeTransition
+            }} name="ProductDetails" component={ProductDetails} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="Cart" component={Cart} />
+            <Stack.Screen options={{
+                ...TransitionPresets.ModalPresentationIOS
+            }} name="Faq" component={Faq} />
         </Stack.Navigator>
       )
     }

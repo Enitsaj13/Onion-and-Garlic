@@ -56,7 +56,7 @@ const FOODSData = [
     price: 120,
     description:
       'Adobo is a popular Filipino dish made with meat, usually pork, chicken, or beef, that is marinated in vinegar, soy sauce, garlic, and black peppercorns before being slow-cooked in its own juices. The word adobo comes from the Spanish word adobar, which means "to marinate."',
-    image: require('assets/images/dishes/adobo.png'),
+    image: require('assets/images/dishes/adobos.png'),
   },
   {
     id: 2,
@@ -498,7 +498,24 @@ export function getFoodData() {
 }
 
 export function getFoodsData(id) {
-  return FOODSData.find((a) => a.id === id)
+  return FOODSData.find((food) => food.id === id)
 }
+
+export function getDessertData() {
+  return DESSERTSData
+}
+
+export function getDessertsData(id) {
+  return DESSERTSData.find((dessert) => dessert.id === id)
+}
+
+export function getBeverageData() {
+  return BEVERAGESData
+}
+
+export function getBeveragesData(id) {
+  return BEVERAGESData.find((beverage) => beverage.id === id)
+}
+
 
 export { FOODSData, CATEGORYData, CAROUSELData, DESSERTSData, BEVERAGESData, SLIDER, FAQS }

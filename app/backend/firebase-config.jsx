@@ -4,7 +4,7 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next'
 import firestore from '@react-native-firebase/firestore'
 
-  
+    /* <-- google key id --> */
     GoogleSignin.configure({
       webClientId: '8823493165-j5rvg757i3g2qv9cu5mgpeaqu4eaop8h.apps.googleusercontent.com',
     });
@@ -29,17 +29,21 @@ import firestore from '@react-native-firebase/firestore'
       setTimeout(() => {
 
         /* <-- error codes --> */ 
-        const errorCodes = {
-          'auth/invalid-email': 'Please enter a valid email address',
-          'auth/user-disabled': 'Your account has been disabled',
-          'auth/user-not-found': 'User not found',
-          'auth/wrong-password': 'Wrong password'
+        if (error.code === 'auth/invalid-email') {
+          Alert.alert('Login Failed', 'That email address is invalid!')
+        } else if (error.code === 'auth/user-disabled') {
+          Alert.alert('Login Failed', 'That email address is disabled!')
+        } else if (error.code === 'auth/user-not-found') {
+          Alert.alert('Login Failed', 'That email address is not found!')
+        } else if (error.code === 'auth/wrong-password') { 
+          Alert.alert('Login Failed', 'That password is incorrect!')
+        } else {
+          Alert.alert('Login Failed', error.message)
         }
-        const errorMessage = errorCodes[error.code]
-        Alert.alert('Login Failed', errorMessage)
-      }, 1500); 
+      }
+      , 1500);
     }
-  };
+  }
 
 
   /* <-- google sign in --> */
@@ -70,9 +74,9 @@ import firestore from '@react-native-firebase/firestore'
         } else if (error.code === statusCodes.IN_PROGRESS) {
           console.log('Signing In');
         } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-          alert('Google Play Services Not Available')
+          Alert.alert('Google Sign In Failed', 'Play Services Not Available or Outdated')
         } else {
-          alert('Something went wrong')
+          Alert.alert('Google Sign In Failed', error.message)
         }
       }
        
@@ -114,11 +118,12 @@ import firestore from '@react-native-firebase/firestore'
 
 
     /* <-- add user to firestore db --> */
-  const addUser = async ( navigation, dataState ) => {
+    const addUser = async ( navigation, dataState ) => {
 
-        /* <-- user --> */
+      /* <-- user --> */
       const userAuthentic = auth()
 
+      /* <-- regex validations --> */
       const nameRegex = /^[a-zA-Z ]{2,30}$/
 
       const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
@@ -189,11 +194,11 @@ import firestore from '@react-native-firebase/firestore'
               try {
                 auth().currentUser && auth().signOut()
                 GoogleSignin.signOut()
-                navigation.replace('Landing')
+                navigation.replace('Login')
                 console.log('User signed out!')
               } catch (error) {
                 console.log(error)
-                alert('Something went wrong!')
+                Alert.alert('Error', 'Something went wrong!')
               }
             },
           },
@@ -202,25 +207,25 @@ import firestore from '@react-native-firebase/firestore'
       )
     }
 
-    /* <-- read --> */
+    /* <-- read the food data --> */
     const getFoodData = async (category, setFoodData) => {
       try {
         const foodData = await firestore()
-        .collection('food')
-        .where('category', '==', category)
-        .get()
+          .collection('food')
+          .where('category', '==', category)
+          .get()
 
-      const tempDb = [];
-      foodData.forEach(doc => {
-        tempDb.push({ 
-          id: doc.id,
-          ...doc.data()
+        const tempDb = [];
+        foodData.forEach(doc => {
+          tempDb.push({ 
+            id: doc.id,
+            ...doc.data()
+          })
         })
-      })
-      setFoodData(tempDb)
-      } catch (error) {
-        console.log(error)
-      }
+        setFoodData(tempDb)
+        } catch (error) {
+          console.log(error)
+        }
     }
 
     const getUser = async (setUser) => {
@@ -228,31 +233,73 @@ import firestore from '@react-native-firebase/firestore'
         const list = [];
 
         await firestore()
-        .collection('users')
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach(doc => {
-            const { name, email, phone, address } = doc.data();
-            list.push({
-              id: doc.id,
-              name,
-              email,
-              phone,
-              address
+          .collection('users')
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach(doc => {
+              const { name, email, phone, address } = doc.data();
+              list.push({
+                id: doc.id,
+                name,
+                email,
+                phone,
+                address
+              })
             })
           })
+          setUser(list)
+        } catch (error) {
+          console.log(error)
+        }
+    }
+
+    /* <-- add to cart --> */
+    const addToCart = async (data, setCart) => {
+      try {
+        const cart = await firestore()
+          .collection('cart')
+          .add(data)
+        setCart([...cart, data])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    /* <-- get the cart --> */
+    const getCart = async (setCart) => {
+      try {
+        const cart = await firestore()
+          .collection('cart')
+          .get()
+
+        const tempDb = [];
+        cart.forEach(doc => {
+          tempDb.push({
+            id: doc.id,
+            ...doc.data()
+          })
         })
-        setUser(list)
+        setCart(tempDb)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    /* <-- get the logged in user data --> */
+    const getLoggedInUser = async (setUser) => {
+      try {
+        const user = await firestore()
+          .collection('users')
+          .doc(auth().currentUser.uid)
+          .get()
+
+        setUser(user.data())
       } catch (error) {
         console.log(error)
       }
     }
 
 
-      
-
-
-  
 export { 
   signIn, 
   googleSignIn, 
@@ -260,7 +307,10 @@ export {
   addUser, 
   logOut, 
   getFoodData,
-  getUser
+  getUser,
+  addToCart,
+  getCart,
+  getLoggedInUser
 }
 
 

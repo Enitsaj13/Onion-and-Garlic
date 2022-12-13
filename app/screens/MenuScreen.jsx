@@ -47,7 +47,7 @@ const MenuScreen = ({ navigation }) => {
   }
 
 
-  /* <-- used useMemo to memoize --> */
+  /* <-- used useMemo hook to memoize the card component --> */
   const memoizedRenderItem = useMemo(() => ({ item }) => <Card food={item}
   navigation={navigation} />, [])
 
