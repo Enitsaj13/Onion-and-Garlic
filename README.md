@@ -1,7 +1,7 @@
 Getting Started with Onion and Garlic Mobile Application
 
 - To Run this App, just simply clone it or download it from the link below:
-git clone https://github.com/Enitsaj13/RecipeApp.git
+git clone https://github.com/Enitsaj13/Onion-and-Garlic.git
 
 - After downloading or cloning the source code, go to its directory named "Onion-and-Garlic-main".
 
