@@ -21,9 +21,6 @@ import ForgotPassword from 'screens/ForgotPassword'
 import ResetPassword from 'screens/ResetPassword'
 import EditProfile from 'screens/EditProfile'
 import EmailVerification from 'components/EmailVerification'
-import ProductsList from "screens/ProductsList"
-import ProductDetails from "screens/ProductDetails"
-import Cart from "screens/Cart"
 import Faq from "screens/Faq"
 
 /* <-- navigator --> */
@@ -91,15 +88,6 @@ const AppStack = () => {
                 ...TransitionPresets.ModalPresentationIOS
             }} name="EditProfile" component={EditProfile} />
             <Stack.Screen name="EmailVerification" component={EmailVerification} />
-            <Stack.Screen options={{
-                ...TransitionPresets.ModalFadeTransition
-            }} name="ProductsList" component={ProductsList} />
-            <Stack.Screen options={{
-                ...TransitionPresets.ModalFadeTransition
-            }} name="ProductDetails" component={ProductDetails} />
-            <Stack.Screen options={{
-                ...TransitionPresets.ModalPresentationIOS
-            }} name="Cart" component={Cart} />
             <Stack.Screen options={{
                 ...TransitionPresets.ModalPresentationIOS
             }} name="Faq" component={Faq} />

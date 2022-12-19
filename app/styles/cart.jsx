@@ -1,54 +1,85 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-	cartLine: {
-		flexDirection: 'row',
-		width: '80%',
-		paddingVertical: 10
-	},
-	image: {
-		width: '25%',
-		aspectRatio: 1,
-		marginRight: 5
-	},
-	cartLineTotal: {
-		flexDirection: 'row',
-		borderTopColor: '#dddddd',
-		borderTopWidth: 1
-	},
-	productTotal: {
-		fontWeight: 'bold'
-	},
-	lineTotal: {
-		fontWeight: 'bold'
-	},
-	lineLeft: {
-		fontSize: 20,
-		lineHeight: 40,
-		color: '#333333'
-	},
-	lineRight: {
-		fontSize: 20,
-		fontWeight: 'bold',
-		color: '#333333',
-		textAlign: 'left',
-	},
-	mainTotal: {
-		flex: 1,
-		fontSize: 20,
-		fontWeight: 'bold',
-		lineHeight: 40,
-		color: '#333333',
-		textAlign: 'right'
-	},
-	itemsList: {
-		backgroundColor: '#eeeeee'
-	},
-	itemsListContainer: {
-		backgroundColor: '#eeeeee',
-		paddingVertical: 8,
-		marginHorizontal: 8
-	}
-})
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  cartItemsView: {
+    padding: 10,
+  },
+  cartItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  cartItemImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+  },
+  cartItemInfo: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  cartItemName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cartItemPrice: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cartItemQuantity: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: 100,
+  },
+  cartItemQuantityText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cartItemQuantityButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#eee',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  subtotalView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  subtotalText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  subtotalPrice: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+ 
+});
 
 export default styles

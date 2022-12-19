@@ -6,12 +6,14 @@ import {
   StatusBar,
   TouchableOpacity,
   Alert,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import FastImage from 'react-native-fast-image';
 import RadioButtonRN from 'radio-buttons-react-native';
+
+import { COLORS, SIZES } from 'theme';
 
 /* <-- theme --> */
 import ThemeContext from 'theme/ThemeContext'
@@ -296,5 +298,7 @@ const Cart = ({ navigation }) => {
     </SafeAreaView>
   );
 }
+
+
 
 export default Cart

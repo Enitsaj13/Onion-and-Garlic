@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "ls": "xcrun simctl list devices",
-    "iphonepro": "react-native run-ios --udid DF7D3B54-560B-4E3F-804F-B333D0DB3AB0"
+    "iphone": "react-native run-ios --udid A2170946-91EC-43E8-AED8-5736BC0B24E8"
   },
   "dependencies": {
     "@react-native-firebase/app": "^16.4.6",

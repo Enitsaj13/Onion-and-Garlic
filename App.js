@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { EventRegister } from 'react-native-event-listeners'
 
-/* <-- cart context --> */
-import { CartProvider } from "hooks/CartContext";
-
 /* <-- theme --> */
 import ThemeContext from 'theme/ThemeContext'
 import { THEME, COLORS } from 'theme'
@@ -41,16 +38,14 @@ const App = () => {
   }
 
   return (
-    <CartProvider>
-      <ThemeContext.Provider value={themeMode ? THEME.dark : THEME.light}>
-        <NavigationContainer theme={MyTheme}>
-          <FocusedStatusBar
-            barStyle={themeMode ? 'light-content' : 'dark-content'} />
-          <AppStack />
-        </NavigationContainer>
-        <Toast />
-      </ThemeContext.Provider>
-    </CartProvider>
+    <ThemeContext.Provider value={themeMode ? THEME.dark : THEME.light}>
+      <NavigationContainer theme={MyTheme}>
+        <FocusedStatusBar
+          barStyle={themeMode ? 'light-content' : 'dark-content'} />
+        <AppStack />
+      </NavigationContainer>
+      <Toast />
+    </ThemeContext.Provider>
   )
 }
 

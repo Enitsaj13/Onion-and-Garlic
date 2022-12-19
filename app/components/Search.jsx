@@ -6,8 +6,6 @@ import IconBadge from 'react-native-icon-badge';
 
 /* <-- theme and cart context --> */
 import ThemeContext from 'theme/ThemeContext'
-import { CartContext } from "hooks/CartContext";
-
 
 /* <-- styles --> */
 import styles from 'styles/home'
@@ -15,9 +13,6 @@ import styles from 'styles/home'
 const Header = ({ onSearch, navigation }) => {
   /* <-- theme state --> */
   const THEME = useContext(ThemeContext)
-
-  /* <-- items context --> */
-  const { getItemsCount } = useContext(CartContext);
 
   return (
     <>
@@ -56,8 +51,9 @@ const Header = ({ onSearch, navigation }) => {
           }
           BadgeElement={
             <Text style={{color:'#FFFFFF'}}>{
-              getItemsCount()
-            }</Text>
+            }
+            
+            1</Text>
           }
           IconBadgeStyle={
             {width:20,
