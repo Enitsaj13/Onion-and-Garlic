@@ -22,7 +22,6 @@ const LandingScreen = ({ navigation }) => {
     )
 }
 
-
 const renderItem = ({ item }) => {
     return (
         <View

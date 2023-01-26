@@ -27,6 +27,7 @@ export const BackButton = ({ navigation }) => {
           size={20}
           color={`${THEME.text}`}
         />
+        
       </TouchableOpacity>
     </>
   )
